@@ -1,0 +1,60 @@
+# Joint Trajectory Controller Configuration for Inspire RH56 Hand
+# This controller provides standard joint-space trajectory following for the 6-DOF hand
+
+inspire_rh56_hand_joint_trajectory_controller:
+  ros__parameters:
+    # Joint specification
+    joints:
+      - thumb_proximal_yaw_joint     # Thumb yaw
+      - thumb_proximal_pitch_joint   # Thumb pitch/flex
+      - index_proximal_joint         # Index finger flex
+      - middle_proximal_joint        # Middle finger flex
+      - ring_proximal_joint          # Ring finger flex
+      - pinky_proximal_joint         # Pinky finger flex
+
+    # Interface configuration
+    command_interfaces:
+      - position
+
+    state_interfaces:
+      - position
+      - velocity
+
+    # Action server configuration
+    action_monitor_rate: 20.0  # Hz - Rate to monitor action goals
+
+    # Trajectory tolerance and timing
+    constraints:
+      stopped_velocity_tolerance: 0.02  # rad/s - Max velocity to consider stopped
+      goal_time: 1.0                    # s - Time tolerance for reaching goal
+
+      # Individual joint tolerances during trajectory execution
+      thumb_proximal_yaw_joint:
+        trajectory: 0.1  # rad - Max position error during trajectory
+        goal: 0.05       # rad - Max position error at goal
+      thumb_proximal_pitch_joint:
+        trajectory: 0.1
+        goal: 0.05
+      index_proximal_joint:
+        trajectory: 0.1
+        goal: 0.05
+      middle_proximal_joint:
+        trajectory: 0.1
+        goal: 0.05
+      ring_proximal_joint:
+        trajectory: 0.1
+        goal: 0.05
+      pinky_proximal_joint:
+        trajectory: 0.1
+        goal: 0.05
+
+    # Trajectory execution parameters
+    allow_partial_joints_goal: false      # Require all joints in goal
+    allow_integration_in_goal_trajectories: true  # Allow continuous trajectories
+
+    # State tolerance (for preemption detection)
+    state_publish_rate: 50.0  # Hz - Rate to publish controller state
+
+    # Open loop control (no PID, just position commands)
+    open_loop_control: true
+    allow_nonzero_velocity_at_trajectory_end: false

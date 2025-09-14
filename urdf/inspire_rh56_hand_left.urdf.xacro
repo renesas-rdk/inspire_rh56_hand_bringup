@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="inspire_rh56_hand_left_ros2_control">
+
+  <!-- Include the hand description -->
+  <xacro:include filename="$(find inspire_rh56_hand_description)/urdf/inspire_hand_left_macro.xacro"/>
+
+  <!-- Include the ros2_control configuration -->
+  <xacro:include filename="$(find inspire_rh56_hand_ros2_control)/urdf/inspire_rh56_hand_macro.ros2_control.xacro"/>
+
+  <!-- Arguments -->
+  <xacro:arg name="serial_port" default="/dev/ttyUSB0"/>
+  <xacro:arg name="baudrate" default="115200"/>
+  <xacro:arg name="use_mock_hardware" default="false"/>
+  <xacro:arg name="prefix" default=""/>
+
+  <!-- World link -->
+  <link name="world"/>
+
+  <!-- Instantiate the left hand -->
+  <xacro:inspire_hand_left parent="world" prefix="$(arg prefix)">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:inspire_hand_left>
+
+  <!-- Add ros2_control configuration -->
+  <xacro:inspire_rh56_hand_ros2_control
+    name="inspire_rh56_hand"
+    serial_port="$(arg serial_port)"
+    baudrate="$(arg baudrate)"
+    use_mock_hardware="$(arg use_mock_hardware)"
+    prefix="$(arg prefix)"
+  />
+
+</robot>
