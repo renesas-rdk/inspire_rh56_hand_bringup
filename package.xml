@@ -29,6 +29,9 @@
   <exec_depend>xacro</exec_depend>
   <exec_depend>inspire_rh56_hand_description</exec_depend>
 
+  <!-- Utility nodes -->
+  <exec_depend>inspire_rh56_hand_utils</exec_depend>
+
   <!-- Launch file dependencies -->
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
