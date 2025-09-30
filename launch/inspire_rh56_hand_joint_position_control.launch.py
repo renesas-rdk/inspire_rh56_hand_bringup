@@ -105,9 +105,14 @@ def launch_setup(context, *args, **kwargs) -> List[Node]:
     robot_description = {'robot_description': robot_description_raw}
 
     # Controller configurations
-    controller_config = os.path.join(
-        pkg_share, 'config', 'controller_manager.yaml'
-    )
+    if use_mock_hardware_value.lower() == 'true':
+        controller_config = os.path.join(
+            pkg_share, 'config', 'controller_manager_mock.yaml'
+        )
+    else:
+        controller_config = os.path.join(
+            pkg_share, 'config', 'controller_manager.yaml'
+        )
 
     position_controller_config = os.path.join(
         pkg_share, 'config', 'inspire_rh56_hand_joint_position_controller.yaml'

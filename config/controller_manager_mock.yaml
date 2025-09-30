@@ -7,8 +7,8 @@ controller_manager:
     # Conservative rate for 115200 bps serial communication
     update_rate: 50  # Hz (20ms cycle time)
 
-    # Turn off clamping to save computation load
-    enforce_command_limits: false
+    # Turn on clamping
+    enforce_command_limits: true
 
     # Available controller types
     joint_state_broadcaster:
