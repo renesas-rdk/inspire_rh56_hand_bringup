@@ -47,8 +47,8 @@ Test position commands in another terminal with:
   ros2 topic pub -1 /inspire_rh56_hand_joint_position_controller/commands std_msgs/msg/Float64MultiArray "{data: [1.3, 0.6, 0.0, 0.0, 1.4, 1.4]}"
 
   # Gripper command interface:
-  ros2 topic pub -1 /hand_gripper_command control_msgs/msg/GripperCommand "{position: 0.03, max_effort: 10.0}"
-  ros2 action send_goal /hand_gripper_cmd control_msgs/action/ParallelGripperCommand "{command: {position: [0.025], effort: [10.0]}}"
+  ros2 topic pub -1 /gripper_command control_msgs/msg/GripperCommand "{position: 0.03, max_effort: 10.0}"
+  ros2 action send_goal /gripper_cmd control_msgs/action/ParallelGripperCommand "{command: {position: [0.025], effort: [10.0]}}"
 
 Or run the Python test script:
   python3 ros2_ws/install/inspire_rh56_hand_bringup/share/inspire_rh56_hand_bringup/test/test_hand_position.py
