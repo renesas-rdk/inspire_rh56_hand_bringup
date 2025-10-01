@@ -112,6 +112,14 @@
       },
       "imageMode": {},
       "followTf": "world"
+    },
+    "Publish!49z8ibr": {
+      "buttonText": "Publish",
+      "buttonTooltip": "",
+      "advancedView": true,
+      "value": "{\n  \"position\": 0.03,\n  \"max_effort\": 0\n}",
+      "topicName": "/gripper_command",
+      "datatype": "control_msgs/msg/GripperCommand"
     }
   },
   "globalVariables": {},
@@ -126,7 +134,11 @@
   },
   "layout": {
     "direction": "row",
-    "first": "Publish!3ve7a3k",
+    "first": {
+      "first": "Publish!3ve7a3k",
+      "second": "Publish!49z8ibr",
+      "direction": "column"
+    },
     "second": {
       "direction": "row",
       "first": "RawMessages!1y5fp7v",
