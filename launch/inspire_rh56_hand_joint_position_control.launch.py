@@ -37,8 +37,9 @@ Usage:
   ros2 launch inspire_rh56_hand_bringup inspire_rh56_hand_joint_position_control.launch.py use_mock_hardware:=true
 
   # Use different gripper configurations:
-  ros2 launch inspire_rh56_hand_bringup inspire_rh56_hand_joint_position_control.launch.py gripper_mapping:=gripper_joint_mapping_2finger.yaml
-  ros2 launch inspire_rh56_hand_bringup inspire_rh56_hand_joint_position_control.launch.py gripper_mapping:=gripper_joint_mapping_3finger.yaml
+  ros2 launch inspire_rh56_hand_bringup inspire_rh56_hand_joint_position_control.launch.py gripper_mapping:=rh56_gripper_joint_mapping_2finger.yaml
+  ros2 launch inspire_rh56_hand_bringup inspire_rh56_hand_joint_position_control.launch.py gripper_mapping:=rh56_gripper_joint_mapping_3finger.yaml
+  ros2 launch inspire_rh56_hand_bringup inspire_rh56_hand_joint_position_control.launch.py gripper_mapping:=rh56_gripper_joint_mapping_5finger.yaml
 
   Then connect Foxglove Studio to ws://<foxglove_bridge_ip>:8765
 
@@ -223,8 +224,8 @@ def generate_launch_description() -> LaunchDescription:
 
     gripper_mapping_arg = DeclareLaunchArgument(
         'gripper_mapping',
-        default_value='gripper_joint_mapping_3finger.yaml',
-        description='Gripper mapping configuration: gripper_joint_mapping_3finger.yaml or gripper_joint_mapping_2finger.yaml'
+        default_value='rh56_gripper_joint_mapping_3finger.yaml',
+        description='Gripper mapping configuration: rh56_gripper_joint_mapping_2finger.yaml, rh56_gripper_joint_mapping_3finger.yaml, or rh56_gripper_joint_mapping_5finger.yaml'
     )
 
     return LaunchDescription([
