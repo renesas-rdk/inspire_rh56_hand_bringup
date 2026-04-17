@@ -10,6 +10,7 @@
   <!-- Arguments -->
   <xacro:arg name="serial_port" default="/dev/ttyUSB0"/>
   <xacro:arg name="baudrate" default="115200"/>
+  <xacro:arg name="hand_speed" default="1000"/>
   <xacro:arg name="use_mock_hardware" default="false"/>
   <xacro:arg name="prefix" default=""/>
 
@@ -26,6 +27,7 @@
     name="inspire_rh56_hand"
     serial_port="$(arg serial_port)"
     baudrate="$(arg baudrate)"
+    hand_speed="$(arg hand_speed)"
     use_mock_hardware="$(arg use_mock_hardware)"
     prefix="$(arg prefix)"
   />

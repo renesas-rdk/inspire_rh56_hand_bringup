@@ -33,6 +33,9 @@ Usage:
   ros2 launch inspire_rh56_hand_bringup inspire_rh56_hand_joint_position_control.launch.py serial_port:=/dev/ttyUSB1
   ros2 launch inspire_rh56_hand_bringup inspire_rh56_hand_joint_position_control.launch.py hand_side:=right
 
+  # Adjust motor speed (0-1000, default 1000 = max speed):
+  ros2 launch inspire_rh56_hand_bringup inspire_rh56_hand_joint_position_control.launch.py hand_speed:=500
+
   # For SIMULATION/TESTING without physical hand (RECOMMENDED for testing):
   ros2 launch inspire_rh56_hand_bringup inspire_rh56_hand_joint_position_control.launch.py use_mock_hardware:=true
 
@@ -76,6 +79,7 @@ def launch_setup(context, *args, **kwargs) -> List[Node]:
     # Get launch configurations
     serial_port_value = LaunchConfiguration('serial_port').perform(context)
     baudrate_value = LaunchConfiguration('baudrate').perform(context)
+    hand_speed_value = LaunchConfiguration('hand_speed').perform(context)
     use_mock_hardware_value = LaunchConfiguration('use_mock_hardware').perform(context)
     hand_side_value = LaunchConfiguration('hand_side').perform(context)
     gripper_mapping_value = LaunchConfiguration('gripper_mapping').perform(context)
@@ -99,6 +103,7 @@ def launch_setup(context, *args, **kwargs) -> List[Node]:
         mappings={
             'serial_port': serial_port_value,
             'baudrate': baudrate_value,
+            'hand_speed': hand_speed_value,
             'use_mock_hardware': use_mock_hardware_value
         }
     ).toxml()
@@ -210,6 +215,12 @@ def generate_launch_description() -> LaunchDescription:
         description='Baudrate for serial communication'
     )
 
+    hand_speed_arg = DeclareLaunchArgument(
+        'hand_speed',
+        default_value='1000',
+        description='Target motor speed for all joints (0-1000, 1000 = max speed)'
+    )
+
     use_mock_hardware_arg = DeclareLaunchArgument(
         'use_mock_hardware',
         default_value='false',
@@ -231,6 +242,7 @@ def generate_launch_description() -> LaunchDescription:
     return LaunchDescription([
         serial_port_arg,
         baudrate_arg,
+        hand_speed_arg,
         use_mock_hardware_arg,
         hand_side_arg,
         gripper_mapping_arg,
