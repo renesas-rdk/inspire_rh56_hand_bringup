@@ -35,6 +35,7 @@
   <!-- Launch file dependencies -->
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
+  <exec_depend>foxglove_bridge</exec_depend>
 
   <!-- Python dependencies for test -->
   <exec_depend>rclpy</exec_depend>
